@@ -1,0 +1,608 @@
+{
+  "warnings": [],
+  "errors": [],
+  "meta": {
+    "county": {
+      "1": "Alcona",
+      "2": "Alger",
+      "3": "Allegan",
+      "4": "Alpena",
+      "5": "Antrim",
+      "6": "Arenac",
+      "7": "Baraga",
+      "8": "Barry",
+      "9": "Bay",
+      "10": "Benzie",
+      "11": "Berrien",
+      "12": "Branch",
+      "13": "Calhoun",
+      "14": "Cass",
+      "15": "Charlevoix",
+      "16": "Cheboygan",
+      "17": "Chippewa",
+      "18": "Clare",
+      "19": "Clinton",
+      "20": "Crawford",
+      "21": "Delta",
+      "22": "Dickinson",
+      "23": "Eaton",
+      "24": "Emmet",
+      "25": "Genesee",
+      "26": "Gladwin",
+      "27": "Gogebic",
+      "28": "Grand Traverse",
+      "29": "Gratiot",
+      "30": "Hillsdale",
+      "31": "Houghton",
+      "32": "Huron",
+      "33": "Ingham",
+      "34": "Ionia",
+      "35": "Iosco",
+      "36": "Iron",
+      "37": "Isabella",
+      "38": "Jackson",
+      "39": "Kalamazoo",
+      "40": "Kalkaska",
+      "41": "Kent",
+      "42": "Keweenaw",
+      "43": "Lake",
+      "44": "Lapeer",
+      "45": "Leelanau",
+      "46": "Lenawee",
+      "47": "Livingston",
+      "48": "Luce",
+      "49": "Mackinac",
+      "50": "Macomb",
+      "51": "Manistee",
+      "52": "Marquette",
+      "53": "Mason",
+      "54": "Mecosta",
+      "55": "Menominee",
+      "56": "Midland",
+      "57": "Missaukee",
+      "58": "Monroe",
+      "59": "Montcalm",
+      "60": "Montmorency",
+      "61": "Muskegon",
+      "62": "Newaygo",
+      "63": "Oakland",
+      "64": "Oceana",
+      "65": "Ogemaw",
+      "66": "Ontonagon",
+      "67": "Osceola",
+      "68": "Oscoda",
+      "69": "Otsego",
+      "70": "Ottawa",
+      "71": "Presque Isle",
+      "72": "Roscommon",
+      "73": "Saginaw",
+      "74": "St. Clair",
+      "75": "St. Joseph",
+      "76": "Sanilac",
+      "77": "Schoolcraft",
+      "78": "Shiawassee",
+      "79": "Tuscola",
+      "80": "Van Buren",
+      "81": "Washtenaw",
+      "82": "Wayne",
+      "83": "Wexford"
+    },
+    "crash_deer_involv_assoc": {
+      "0": "No deer",
+      "1": "Deer involved",
+      "9": "Uncoded & errors"
+    }
+  },
+  "headers": {
+    "county": "County",
+    "crash_id": "Crash Count",
+    "crash_deer_involv_assoc": "Crash: Deer Involved/Associated",
+    "code0": "No deer",
+    "code1": "Deer involved",
+    "code9": "Uncoded & errors"
+  },
+  "0": {
+    "county": "Alcona",
+    "code0": "3",
+    "code1": "482",
+    "code9": "173"
+  },
+  "1": {
+    "county": "Alger",
+    "code0": "5",
+    "code1": "98",
+    "code9": "177"
+  },
+  "2": {
+    "county": "Allegan",
+    "code0": "39",
+    "code1": "886",
+    "code9": "2748"
+  },
+  "3": {
+    "county": "Alpena",
+    "code0": "9",
+    "code1": "301",
+    "code9": "469"
+  },
+  "4": {
+    "county": "Antrim",
+    "code0": "14",
+    "code1": "292",
+    "code9": "486"
+  },
+  "5": {
+    "county": "Arenac",
+    "code0": "9",
+    "code1": "235",
+    "code9": "385"
+  },
+  "6": {
+    "county": "Baraga",
+    "code0": "9",
+    "code1": "168",
+    "code9": "108"
+  },
+  "7": {
+    "county": "Barry",
+    "code0": "3",
+    "code1": "610",
+    "code9": "950"
+  },
+  "8": {
+    "county": "Bay",
+    "code0": "13",
+    "code1": "513",
+    "code9": "2481"
+  },
+  "9": {
+    "county": "Benzie",
+    "code0": "12",
+    "code1": "288",
+    "code9": "271"
+  },
+  "10": {
+    "county": "Berrien",
+    "code0": "34",
+    "code1": "800",
+    "code9": "3764"
+  },
+  "11": {
+    "county": "Branch",
+    "code0": "18",
+    "code1": "761",
+    "code9": "826"
+  },
+  "12": {
+    "county": "Calhoun",
+    "code0": "35",
+    "code1": "1056",
+    "code9": "3643"
+  },
+  "13": {
+    "county": "Cass",
+    "code0": "12",
+    "code1": "405",
+    "code9": "990"
+  },
+  "14": {
+    "county": "Charlevoix",
+    "code0": "2",
+    "code1": "474",
+    "code9": "558"
+  },
+  "15": {
+    "county": "Cheboygan",
+    "code0": "6",
+    "code1": "464",
+    "code9": "542"
+  },
+  "16": {
+    "county": "Chippewa",
+    "code0": "11",
+    "code1": "278",
+    "code9": "601"
+  },
+  "17": {
+    "county": "Clare",
+    "code0": "19",
+    "code1": "558",
+    "code9": "563"
+  },
+  "18": {
+    "county": "Clinton",
+    "code0": "1",
+    "code1": "918",
+    "code9": "1239"
+  },
+  "19": {
+    "county": "Crawford",
+    "code0": "2",
+    "code1": "73",
+    "code9": "336"
+  },
+  "20": {
+    "county": "Delta",
+    "code0": "8",
+    "code1": "486",
+    "code9": "659"
+  },
+  "21": {
+    "county": "Dickinson",
+    "code0": "13",
+    "code1": "379",
+    "code9": "401"
+  },
+  "22": {
+    "county": "Eaton",
+    "code0": "24",
+    "code1": "998",
+    "code9": "2346"
+  },
+  "23": {
+    "county": "Emmet",
+    "code0": "3",
+    "code1": "474",
+    "code9": "1002"
+  },
+  "24": {
+    "county": "Genesee",
+    "code0": "39",
+    "code1": "1000",
+    "code9": "9482"
+  },
+  "25": {
+    "county": "Gladwin",
+    "code0": "2",
+    "code1": "74",
+    "code9": "379"
+  },
+  "26": {
+    "county": "Gogebic",
+    "code0": "2",
+    "code1": "49",
+    "code9": "177"
+  },
+  "27": {
+    "county": "Grand Traverse",
+    "code0": "20",
+    "code1": "628",
+    "code9": "2870"
+  },
+  "28": {
+    "county": "Gratiot",
+    "code0": "18",
+    "code1": "917",
+    "code9": "753"
+  },
+  "29": {
+    "county": "Hillsdale",
+    "code0": "23",
+    "code1": "827",
+    "code9": "784"
+  },
+  "30": {
+    "county": "Houghton",
+    "code0": "8",
+    "code1": "211",
+    "code9": "727"
+  },
+  "31": {
+    "county": "Huron",
+    "code0": "13",
+    "code1": "935",
+    "code9": "560"
+  },
+  "32": {
+    "county": "Ingham",
+    "code0": "22",
+    "code1": "1096",
+    "code9": "8829"
+  },
+  "33": {
+    "county": "Ionia",
+    "code0": "12",
+    "code1": "471",
+    "code9": "1180"
+  },
+  "34": {
+    "county": "Iosco",
+    "code0": "7",
+    "code1": "214",
+    "code9": "410"
+  },
+  "35": {
+    "county": "Iron",
+    "code0": "9",
+    "code1": "243",
+    "code9": "171"
+  },
+  "36": {
+    "county": "Isabella",
+    "code0": "30",
+    "code1": "980",
+    "code9": "1849"
+  },
+  "37": {
+    "county": "Jackson",
+    "code0": "41",
+    "code1": "1254",
+    "code9": "3968"
+  },
+  "38": {
+    "county": "Kalamazoo",
+    "code0": "36",
+    "code1": "806",
+    "code9": "7749"
+  },
+  "39": {
+    "county": "Kalkaska",
+    "code0": "2",
+    "code1": "74",
+    "code9": "327"
+  },
+  "40": {
+    "county": "Kent",
+    "code0": "47",
+    "code1": "1481",
+    "code9": "20655"
+  },
+  "41": {
+    "county": "Keweenaw",
+    "code0": "0",
+    "code1": "29",
+    "code9": "50"
+  },
+  "42": {
+    "county": "Lake",
+    "code0": "2",
+    "code1": "238",
+    "code9": "205"
+  },
+  "43": {
+    "county": "Lapeer",
+    "code0": "23",
+    "code1": "1308",
+    "code9": "1687"
+  },
+  "44": {
+    "county": "Leelanau",
+    "code0": "8",
+    "code1": "287",
+    "code9": "370"
+  },
+  "45": {
+    "county": "Lenawee",
+    "code0": "12",
+    "code1": "553",
+    "code9": "1848"
+  },
+  "46": {
+    "county": "Livingston",
+    "code0": "3",
+    "code1": "621",
+    "code9": "4305"
+  },
+  "47": {
+    "county": "Luce",
+    "code0": "4",
+    "code1": "56",
+    "code9": "80"
+  },
+  "48": {
+    "county": "Mackinac",
+    "code0": "7",
+    "code1": "206",
+    "code9": "201"
+  },
+  "49": {
+    "county": "Macomb",
+    "code0": "64",
+    "code1": "585",
+    "code9": "24762"
+  },
+  "50": {
+    "county": "Manistee",
+    "code0": "10",
+    "code1": "521",
+    "code9": "431"
+  },
+  "51": {
+    "county": "Marquette",
+    "code0": "20",
+    "code1": "314",
+    "code9": "1370"
+  },
+  "52": {
+    "county": "Mason",
+    "code0": "20",
+    "code1": "739",
+    "code9": "630"
+  },
+  "53": {
+    "county": "Mecosta",
+    "code0": "18",
+    "code1": "941",
+    "code9": "995"
+  },
+  "54": {
+    "county": "Menominee",
+    "code0": "9",
+    "code1": "122",
+    "code9": "259"
+  },
+  "55": {
+    "county": "Midland",
+    "code0": "12",
+    "code1": "948",
+    "code9": "1712"
+  },
+  "56": {
+    "county": "Missaukee",
+    "code0": "5",
+    "code1": "363",
+    "code9": "224"
+  },
+  "57": {
+    "county": "Monroe",
+    "code0": "11",
+    "code1": "352",
+    "code9": "3395"
+  },
+  "58": {
+    "county": "Montcalm",
+    "code0": "19",
+    "code1": "975",
+    "code9": "1147"
+  },
+  "59": {
+    "county": "Montmorency",
+    "code0": "1",
+    "code1": "246",
+    "code9": "124"
+  },
+  "60": {
+    "county": "Muskegon",
+    "code0": "14",
+    "code1": "570",
+    "code9": "4280"
+  },
+  "61": {
+    "county": "Newaygo",
+    "code0": "19",
+    "code1": "668",
+    "code9": "838"
+  },
+  "62": {
+    "county": "Oakland",
+    "code0": "250",
+    "code1": "1847",
+    "code9": "40563"
+  },
+  "63": {
+    "county": "Oceana",
+    "code0": "8",
+    "code1": "497",
+    "code9": "475"
+  },
+  "64": {
+    "county": "Ogemaw",
+    "code0": "8",
+    "code1": "401",
+    "code9": "379"
+  },
+  "65": {
+    "county": "Ontonagon",
+    "code0": "1",
+    "code1": "175",
+    "code9": "83"
+  },
+  "66": {
+    "county": "Osceola",
+    "code0": "11",
+    "code1": "634",
+    "code9": "470"
+  },
+  "67": {
+    "county": "Oscoda",
+    "code0": "0",
+    "code1": "173",
+    "code9": "114"
+  },
+  "68": {
+    "county": "Otsego",
+    "code0": "9",
+    "code1": "209",
+    "code9": "685"
+  },
+  "69": {
+    "county": "Ottawa",
+    "code0": "36",
+    "code1": "1116",
+    "code9": "7276"
+  },
+  "70": {
+    "county": "Presque Isle",
+    "code0": "9",
+    "code1": "407",
+    "code9": "132"
+  },
+  "71": {
+    "county": "Roscommon",
+    "code0": "7",
+    "code1": "306",
+    "code9": "457"
+  },
+  "72": {
+    "county": "Saginaw",
+    "code0": "15",
+    "code1": "901",
+    "code9": "4813"
+  },
+  "73": {
+    "county": "St. Clair",
+    "code0": "21",
+    "code1": "749",
+    "code9": "3116"
+  },
+  "74": {
+    "county": "St. Joseph",
+    "code0": "10",
+    "code1": "456",
+    "code9": "1210"
+  },
+  "75": {
+    "county": "Sanilac",
+    "code0": "23",
+    "code1": "1119",
+    "code9": "441"
+  },
+  "76": {
+    "county": "Schoolcraft",
+    "code0": "5",
+    "code1": "155",
+    "code9": "120"
+  },
+  "77": {
+    "county": "Shiawassee",
+    "code0": "23",
+    "code1": "753",
+    "code9": "1051"
+  },
+  "78": {
+    "county": "Tuscola",
+    "code0": "18",
+    "code1": "806",
+    "code9": "891"
+  },
+  "79": {
+    "county": "Van Buren",
+    "code0": "27",
+    "code1": "620",
+    "code9": "1752"
+  },
+  "80": {
+    "county": "Washtenaw",
+    "code0": "60",
+    "code1": "961",
+    "code9": "10681"
+  },
+  "81": {
+    "county": "Wayne",
+    "code0": "189",
+    "code1": "372",
+    "code9": "52603"
+  },
+  "82": {
+    "county": "Wexford",
+    "code0": "16",
+    "code1": "314",
+    "code9": "827"
+  },
+  "summary": {
+    "county": "",
+    "code0": "1662",
+    "code1": "46870",
+    "code9": "263640"
+  }
+}

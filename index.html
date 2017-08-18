@@ -1,0 +1,325 @@
+<html>
+    <head>
+        <title>Deer Crash Map</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+    </head>
+    <body>
+      <div id="tooltip">
+          <p><strong id="name"></strong></p>
+          <hr>
+          <span id ="value"></span>
+          <span id="text"></span>
+      </div>
+
+      <div id="map">
+        <div class="button">
+          <div>
+            <button id='addLabel'>Add Labels</button>
+          </div>
+          <div>
+            <button id='save'>Save As PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="hidden-div"></div>
+
+    <!-- visuals -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+    <script src="https://unpkg.com/d3-scale-cluster@1.1.2/dist/d3-scale-cluster.min.js"></script>
+
+    <!-- export pdf -->
+    <script type="text/javascript" src="js/pdfkit.js"></script>
+    <script type="text/javascript" src="js/blob-stream.js"></script>
+    <script type="text/javascript" src="js/source.js"></script>
+    <script type="text/javascript" src="js/download.js"></script>
+    
+    <script>
+        var width = 960,
+            height = 600;
+                    
+        var crashByCounty = d3.map();
+
+        var range = colorbrewer.OrRd[6].slice(1);
+
+        var map = d3.select("#map")
+                .append("svg") 
+                .attr("width", width)
+                .attr("height", height);
+                    
+        var projection = d3.geoMercator()
+                   .center([-85.6,44.3])
+                   .translate([width/2,height/1.8])
+                   .scale(4100);
+
+		    var path = d3.geoPath()
+				     .projection(projection);
+            
+            
+        var tooltip = d3.select("#tooltip")
+                        .attr("class","tooltip")
+                        .style("opacity",0);        
+
+
+        var formatComma = d3.format(",");
+
+
+        var scale;
+
+
+        // data processing
+        d3.json("deer_crash_2016.json", function(json) {
+          for (i=0;i<=82;i++){
+            json[i].code1 = +json[i].code1;
+            crashByCounty.set(json[i].county,json[i].code1);
+          }
+
+        });
+
+        // console.log(crashByCounty);
+
+
+
+            
+        d3.json("counties_simplified.json", function(json) {
+
+          var values = crashByCounty.values().filter(function(i){return i!== 0;});
+
+                
+          scale = d3.scaleCluster().domain(values).range(range);
+
+          var counties = json.features;
+
+
+          //draw choropleth
+          map.append("g")
+             .attr("class", "counties")
+             .selectAll("path")
+             .data(counties)
+             .enter().append("path")
+             .attr("class","county")
+             .attr("id",function(d){return d.properties.NAME;})
+             .attr("fill",countyFill)
+             .attr("d", path)
+             .on("mouseover",countyHighlight)
+             .on("mouseout",countyFade);
+
+          //add county labels
+          var labels = map.append("g")
+             .attr("class","county-label")
+             .selectAll(".county-label")
+             .data(counties)
+             .enter().append("text")
+             .each(getCountyLabel)
+             .attr("class", function(d) { return "county-label " + d.properties.NAME; })
+             .attr("transform", getLabelPosition);
+
+    
+          //draw legend
+          var rectW = 130, rectH = 150;
+
+          var legend = d3.legendColor()
+                           .labelFormat(d3.format(""))
+                           .shapeWidth(30)
+                           .shapeHeight(12)
+                           .shapePadding(5)
+                           .labels(legendLabelHelper)
+                           .titleWidth(120)
+                           .title("Deer Involved Crash")
+                           .scale(scale);
+
+          map.append("g")
+            .attr("class", "legend")
+            .attr("transform","translate(200,350)");
+
+          map.append("rect")
+             .attr("width",rectW)
+             .attr("height",rectH)
+             .attr("fill","none")
+             .style("stroke","black")
+             .attr("transform","translate(190,320)");
+
+          map.select(".legend")
+      	      .call(legend);
+                
+        });
+
+
+    //toggle label button
+    var labelButton = d3.select("#addLabel");
+
+    var labelAdded = false;
+
+    labelButton.on("click",function(){
+
+          if (labelAdded == false){
+
+            labelButton.html("Remove Labels");
+
+            d3.selectAll(".county-name-label")
+            .style("visibility","visible");
+
+            d3.selectAll(".county-crash-label")
+            .style("visibility","visible");
+
+            labelAdded = true;
+          } else {
+            labelButton.html("Add Labels");
+
+            d3.selectAll(".county-name-label")
+            .style("visibility","hidden");
+
+            d3.selectAll(".county-crash-label")
+            .style("visibility","hidden");
+
+            labelAdded = false;
+
+          }
+      })
+
+
+            
+    function countyHighlight(d){
+          var countyName = d.properties.NAME
+          var countyCrash = crashByCounty.get(countyName);
+
+          this.parentNode.appendChild(this);
+          d3.select(this).attr('stroke',"coral")
+            .attr("opacity",0.8);
+
+          tooltip.transition().duration(100)
+                 .style("opacity",0.9);
+
+
+          tooltip.style("top",(d3.event.pageY-10)+"px")
+                 .style("left",(d3.event.pageX+10)+"px");
+
+          tooltip.select("#name").text(countyName+" County");
+
+          tooltip.select("#value").text(formatComma(countyCrash));  
+
+          tooltip.select("#text").text("deer involved crashes");            
+      }
+            
+    function countyFade(){
+        d3.select(this).attr('stroke',null)
+          .attr("opacity",1);
+        tooltip.transition().duration(300).style("opacity",0);
+    }
+
+    function legendLabelHelper({ i, genLength, generatedLabels}){
+        var label = generatedLabels[i];
+
+        if (i == genLength - 1){
+            label = "More than " + label.replace(' to NaN', '');
+            return label;
+        }
+
+        var start = +label.split("to")[0];
+        var end = +label.split("to")[1]-1;
+
+        if (start === end){
+            label = start;
+        } else {
+            label = start + " to " +end;
+        }
+
+        return label;
+    }
+
+    function countyFill(d){
+        var countyName = d.properties.NAME
+        var countyCrash = crashByCounty.get(countyName);
+        if (countyCrash == 0){
+            return "white";
+        } else {
+            return scale(countyCrash);
+        }            
+    }
+
+
+    function getCountyCrash(d){
+        var countyName = d.properties.NAME;
+        var countyCrash = crashByCounty.get(countyName);
+        return countyCrash;
+
+    }
+
+    function getCountyCrashLabel(d){
+        return formatComma(getCountyCrash(d));
+    }
+
+    function getCountyLabel(d){
+
+        if (d.properties.NAME == "Grand Traverse"){
+            var countyName = ["Grand","Traverse"]
+        } else {
+            var countyName = [d.properties.NAME]
+
+        }
+
+        for (i = 0; i < countyName.length; i++) {
+            d3.select(this).append("tspan")
+              .text(countyName[i])
+              .attr("dy", i ? "0.8em" : 0)
+              .attr("x", 0)
+              .attr("class","county-name-label")
+              .attr("text-anchor", "middle")              
+              .style("visibility","hidden");
+        }
+            
+
+        d3.select(this).append("tspan")
+          .text(getCountyCrashLabel)
+          .attr("dy", i ? "1.5em" : 0)
+          .attr("x", 0)
+          .attr("class","county-crash-label")
+          .attr("text-anchor", "middle")
+          .style("visibility","hidden");
+        
+    }
+
+    function getLabelPosition(d){
+        var countyName = d.properties.NAME;
+        var labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]-5) + ")"
+        
+        if (countyName == "Keweenaw"){
+            labelPostion = "translate(" + (path.centroid(d)[0]-2) + "," + (path.centroid(d)[1]) + ")"
+        } else if (countyName == "Alger"){
+            labelPostion = "translate(" + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+10) + ")"
+        } else if (countyName == "Leelanau"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]+6) + ")"
+        } else if (countyName == "Bay"){
+            labelPostion = "translate(" + (path.centroid(d)[0]-3) + "," + (path.centroid(d)[1]) + ")"
+        } else if (countyName == "Charlevoix"){
+            labelPostion = "translate(" + (path.centroid(d)[0]+6) + "," + (path.centroid(d)[1]+7) + ")"
+        } else if (countyName == "Muskegon"){
+            labelPostion = "translate(" + (path.centroid(d)[0]-5) + "," + (path.centroid(d)[1]-5) + ")"
+        } else if (countyName == "Houghton"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]-10) + ")"
+        } else if (countyName == "Mackinac"){
+            labelPostion = "translate(" + (path.centroid(d)[0]+15) + "," + (path.centroid(d)[1]) + ")"
+        } else if (countyName == "Presque Isle"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]+2) + ")"
+        } else if (countyName == "St. Clair"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]-8) + ")"
+        } else if (countyName == "Grand Traverse"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]) + ")"
+        } else if (countyName == "Berrien"){
+            labelPostion = "translate(" + (path.centroid(d)[0]) + "," + (path.centroid(d)[1]+5) + ")"
+        }
+
+        return labelPostion;
+
+    }
+                                                            
+    </script>
+        <!-- create pdf -->
+    <script type="text/javascript" src="js/save_as_pdf.js"></script>
+    
+    </body>
+
+</html>
